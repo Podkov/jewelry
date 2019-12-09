@@ -3,7 +3,7 @@ package com.store.jewelry.model;
 import javax.persistence.*;
 
 @Entity
-public class Bracelet extends Product{
+public class Bracelet{
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

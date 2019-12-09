@@ -23,7 +23,7 @@ public class Address {
     @Column
     private String apartmentNumber;
 
-    private Client client;
+//    private Client client;
 
 
     public int getZipCode() {

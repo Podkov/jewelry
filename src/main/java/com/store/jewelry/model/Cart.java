@@ -13,10 +13,15 @@ public class Cart {
     @JoinColumn(name = "client_id")
     private Client client;
 
-    @ManyToMany
-    private Product product;
+//    @ManyToMany
+//    private Product product;
 
 
+    public Client getClient() {
+        return client;
+    }
 
-
+    public void setClient(Client client) {
+        this.client = client;
+    }
 }
