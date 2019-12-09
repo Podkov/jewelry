@@ -3,7 +3,7 @@ package com.store.jewelry.model;
 import javax.persistence.*;
 
 @Entity
-public class Bracelet extends Jewelry {
+public class Bracelet extends Product{
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -14,6 +14,12 @@ public class Bracelet extends Jewelry {
 
     @Column
     private String name;
+
+    @Column
+    private String materialType;
+
+    @Column
+    private boolean isRealDiamond;
 
     public float getPrice() {
         return price;
@@ -29,5 +35,21 @@ public class Bracelet extends Jewelry {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getMaterialType() {
+        return materialType;
+    }
+
+    public void setMaterialType(String materialType) {
+        this.materialType = materialType;
+    }
+
+    public boolean isRealDiamond() {
+        return isRealDiamond;
+    }
+
+    public void setRealDiamond(boolean realDiamond) {
+        isRealDiamond = realDiamond;
     }
 }

@@ -1,4 +1,5 @@
 package com.store.jewelry.model;
 
-public abstract class Jewelry {
+public abstract class Product {
+
 }

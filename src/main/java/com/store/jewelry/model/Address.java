@@ -1,5 +1,7 @@
 package com.store.jewelry.model;
 
+import org.hibernate.annotations.CollectionId;
+
 import javax.persistence.*;
 
 @Entity
@@ -20,6 +22,9 @@ public class Address {
 
     @Column
     private String apartmentNumber;
+
+    private Client client;
+
 
     public int getZipCode() {
         return zipCode;

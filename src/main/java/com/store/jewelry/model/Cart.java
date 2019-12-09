@@ -10,9 +10,11 @@ public class Cart {
     private long id;
 
     @OneToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "client_id")
+    private Client client;
 
+    @ManyToMany
+    private Product product;
 
 
 

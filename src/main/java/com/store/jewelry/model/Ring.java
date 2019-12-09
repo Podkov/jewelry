@@ -1,9 +1,12 @@
 package com.store.jewelry.model;
 
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 import javax.persistence.*;
 
 @Entity
-public class Earrings extends Product {
+public class Ring extends Product {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
@@ -13,6 +16,12 @@ public class Earrings extends Product {
 
     @Column
     private String name;
+
+    @Column
+    private boolean withStone;
+
+    @Column
+    private double size;
 
     @Column
     private String materialType;
@@ -50,5 +59,21 @@ public class Earrings extends Product {
 
     public void setRealDiamond(boolean realDiamond) {
         isRealDiamond = realDiamond;
+    }
+
+    public boolean isWithStone() {
+        return withStone;
+    }
+
+    public void setWithStone(boolean withStone) {
+        this.withStone = withStone;
+    }
+
+    public double getSize() {
+        return size;
+    }
+
+    public void setSize(double size) {
+        this.size = size;
     }
 }

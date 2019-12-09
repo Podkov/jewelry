@@ -3,7 +3,7 @@ package com.store.jewelry.model;
 import javax.persistence.*;
 
 @Entity
-public class User {
+public class Client {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
