@@ -22,8 +22,13 @@ public class Address {
     @Column
     private String apartmentNumber;
 
-    //TODO many to many
-    //private List<Client> client;
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinTable(
+            name = "client_address",
+            joinColumns = @JoinColumn(name = "address_id"),
+            inverseJoinColumns = @JoinColumn(name = "client_id")
+    )
+    private List<Client> clients;
 
     public int getZipCode() {
         return zipCode;

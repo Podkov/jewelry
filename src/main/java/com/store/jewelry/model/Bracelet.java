@@ -24,11 +24,11 @@ public class Bracelet{
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     @JoinTable(
-            name = "client_order_bracelet",
+            name = "cart_bracelet",
             joinColumns = @JoinColumn(name = "bracelet_id"),
-            inverseJoinColumns = @JoinColumn(name = "client_order_id")
+            inverseJoinColumns = @JoinColumn(name = "cart_id")
     )
-    private List<ClientOrder> clientOrders;
+    private List<Client> clientCarts;
 
     public float getPrice() {
         return price;

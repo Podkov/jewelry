@@ -24,11 +24,11 @@ public class Necklace extends Product{
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     @JoinTable(
-            name = "client_order_necklace",
+            name = "cart_necklace",
             joinColumns = @JoinColumn(name = "necklace_id"),
-            inverseJoinColumns = @JoinColumn(name = "client_order_id")
+            inverseJoinColumns = @JoinColumn(name = "cart_id")
     )
-    private List<ClientOrder> clientOrders;
+    private List<Cart> clientCarts;
 
     public float getPrice() {
         return price;

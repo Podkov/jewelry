@@ -30,8 +30,13 @@ public class Client {
             )
     private List<ClientOrder> clientOrders;
 
-    //TODO many to many
-    //private List<Address> address;
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinTable(
+            name = "client_address",
+            joinColumns = @JoinColumn(name = "client_id"),
+            inverseJoinColumns = @JoinColumn(name = "address_id")
+    )
+    private List<Address> addresses;
 
     public String getFirstName() {
         return firstName;
