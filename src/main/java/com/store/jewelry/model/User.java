@@ -1,10 +1,23 @@
 package com.store.jewelry.model;
 
+import javax.persistence.*;
+
+@Entity
 public class User {
 
-    private String name;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private long id;
 
-    private Cart cart;
+    @Column
+    private String firstName;
+
+    @Column
+    private String lastName;
+
+
+
+
 
 
 }
