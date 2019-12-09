@@ -1,8 +1,7 @@
 package com.store.jewelry.model;
 
-import org.hibernate.annotations.CollectionId;
-
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Address {
@@ -23,8 +22,8 @@ public class Address {
     @Column
     private String apartmentNumber;
 
-//    private Client client;
-
+    //TODO many to many
+    //private List<Client> client;
 
     public int getZipCode() {
         return zipCode;

@@ -1,6 +1,7 @@
 package com.store.jewelry.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Cart {
@@ -13,9 +14,8 @@ public class Cart {
     @JoinColumn(name = "client_id")
     private Client client;
 
-//    @ManyToMany
-//    private Product product;
-
+    //TODO many to many
+    //private List<Product> product;
 
     public Client getClient() {
         return client;
@@ -24,4 +24,6 @@ public class Cart {
     public void setClient(Client client) {
         this.client = client;
     }
+
+
 }
