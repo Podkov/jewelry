@@ -3,6 +3,7 @@ package com.store.jewelry.model;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Ring extends Product {
@@ -28,6 +29,14 @@ public class Ring extends Product {
 
     @Column
     private boolean isRealDiamond;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinTable(
+            name = "client_order_ring",
+            joinColumns = @JoinColumn(name = "ring_id"),
+            inverseJoinColumns = @JoinColumn(name = "client_order_id")
+    )
+    private List<ClientOrder> clientOrders;
 
     public float getPrice() {
         return price;
