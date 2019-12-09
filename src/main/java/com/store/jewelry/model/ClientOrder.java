@@ -20,8 +20,14 @@ public class ClientOrder {
     @Column
     private float price;
 
-    //TODO many to many
-//    private List<Product> products;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinTable(
+            name = "client_order_join",
+            joinColumns = @JoinColumn(name = "client_order_id"),
+            inverseJoinColumns = @JoinColumn(name = "client_id")
+    )
+    private List<Client> clients;
 
     //TODO many to many
 //    private List<Client> clients;

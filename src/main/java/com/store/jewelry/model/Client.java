@@ -22,6 +22,14 @@ public class Client {
     @Column
     private String password;
 
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinTable(
+            name = "client_order_join",
+            joinColumns = @JoinColumn(name = "client_id"),
+            inverseJoinColumns = @JoinColumn(name = "client_order_id")
+            )
+    private List<ClientOrder> clientOrders;
+
     //TODO many to many
     //private List<Address> address;
 
@@ -56,5 +64,15 @@ public class Client {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public List<ClientOrder> getClientOrders() {
+        return clientOrders;
+    }
+
+    public void setClientOrders(List<ClientOrder> clientOrders) {
+        this.clientOrders = clientOrders;
+    }
+
+
 
 }
