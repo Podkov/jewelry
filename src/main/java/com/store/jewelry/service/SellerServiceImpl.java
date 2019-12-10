@@ -63,4 +63,9 @@ public class SellerServiceImpl implements SellerService {
 
         sellerRepository.save(seller);
     }
+
+    @Override
+    public Optional<Seller> getSeller(Long sellerId) {
+        return sellerRepository.findById(sellerId);
+    }
 }

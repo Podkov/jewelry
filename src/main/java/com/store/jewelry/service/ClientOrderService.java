@@ -7,6 +7,7 @@ import com.store.jewelry.model.ClientOrder;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 public interface ClientOrderService {
 
@@ -18,4 +19,5 @@ public interface ClientOrderService {
 
     void updateClientOrder(Long clientOrderId, LocalDate dateOfOrder, String orderStatus, float price, List<Client> clientList, Cart cart);
 
+    Optional<ClientOrder> getClientOrder(Long clientOrderId);
 }

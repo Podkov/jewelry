@@ -64,4 +64,9 @@ public class AdminServiceImpl implements AdminService {
 
         adminRepository.save(admin);
     }
+
+    @Override
+    public Optional<Admin> getAdmin(Long adminId) {
+        return adminRepository.findById(adminId);
+    }
 }

@@ -22,34 +22,5 @@ public class SellerController {
 
         return "registration";
     }
-
-
-//    @RequestMapping(value = "/registration", method = RequestMethod.POST)
-//    public ModelAndView createNewSeller(String nickName, String password){
-//        ModelAndView modelAndView = new ModelAndView();
-//        Long id = sellerService.createSeller(nickName, password);
-//
-//        modelAndView.addObject("seller", new Seller());
-//        modelAndView.setViewName("registra");
-//
-//        return modelAndView;
-//    }
-
-
-
-//    public String addSeller(){
-//        sellerService.createSeller("nick1", "ababa");
-//
-//        List<Seller> sellers = sellerService.getAllSellers();
-//
-//        StringBuilder response = new StringBuilder();
-//
-//        for (Seller seller : sellers){
-//            response.append(seller.getId());
-//            response.append(seller.getNickName());
-//            response.append('\n');
-//        }
-//        return response.toString();
-//    }
-
+    
 }

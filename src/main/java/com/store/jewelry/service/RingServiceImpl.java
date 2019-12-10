@@ -74,4 +74,9 @@ public class RingServiceImpl implements RingService {
 
         ringRepository.save(ring);
     }
+
+    @Override
+    public Optional<Ring> getRing(Long ringId) {
+        return ringRepository.findById(ringId);
+    }
 }
