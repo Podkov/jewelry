@@ -41,7 +41,7 @@ public class AddressServiceImpl implements AddressService {
     public List<Address> getAllAddresses() {
         List<Address> addresses = new ArrayList<>();
 
-        for (Address address: addressRepository.findAll()){
+        for (Address address : addressRepository.findAll()) {
             addresses.add(address);
         }
 
@@ -58,7 +58,7 @@ public class AddressServiceImpl implements AddressService {
     @Transactional
     public void updateAddress(Long addressId, int zipCode, String street, String houseNumber, String apartmentNumber, List<Client> clientList) {
         Optional<Address> addressOptional = addressRepository.findById(addressId);
-        if (!addressOptional.isPresent()){
+        if (!addressOptional.isPresent()) {
             throw new EntityNotFoundException("Address, id: " + addressId);
         }
 
@@ -70,5 +70,10 @@ public class AddressServiceImpl implements AddressService {
         address.setClients(clientList);
 
         addressRepository.save(address);
+    }
+
+    @Override
+    public Optional<Address> getAddress(Long addressId) {
+        return addressRepository.findById(addressId);
     }
 }

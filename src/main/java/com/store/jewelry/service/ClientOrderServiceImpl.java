@@ -72,4 +72,9 @@ public class ClientOrderServiceImpl implements ClientOrderService {
 
         clientOrderRepository.save(clientOrder);
     }
+
+    @Override
+    public Optional<ClientOrder> getClientOrder(Long clientOrderId) {
+        return clientOrderRepository.findById(clientOrderId);
+    }
 }
