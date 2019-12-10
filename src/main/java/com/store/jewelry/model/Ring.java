@@ -85,4 +85,20 @@ public class Ring extends Product {
     public void setSize(double size) {
         this.size = size;
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public List<Cart> getClientCarts() {
+        return clientCarts;
+    }
+
+    public void setClientCarts(List<Cart> clientCarts) {
+        this.clientCarts = clientCarts;
+    }
 }

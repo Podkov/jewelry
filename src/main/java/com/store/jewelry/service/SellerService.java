@@ -12,6 +12,6 @@ public interface SellerService {
 
     void deleteSeller(Long sellerId);
 
-    void updateSeller(Long sellerId, String name, String password);
+    void updateSeller(Long sellerId, String nickName, String password);
 
 }

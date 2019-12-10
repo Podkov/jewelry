@@ -3,11 +3,15 @@ package com.store.jewelry.service;
 import com.store.jewelry.model.Seller;
 import com.store.jewelry.repository.SellerRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
+@Transactional
 public class SellerServiceImpl implements SellerService {
 
     private SellerRepository sellerRepository;
@@ -17,6 +21,7 @@ public class SellerServiceImpl implements SellerService {
     }
 
     @Override
+    @Transactional
     public Long createSeller(String nickName, String password) {
 
         Seller seller = new Seller();
@@ -40,12 +45,22 @@ public class SellerServiceImpl implements SellerService {
     }
 
     @Override
+    @Transactional
     public void deleteSeller(Long sellerId) {
         sellerRepository.deleteById(sellerId);
     }
 
     @Override
-    public void updateSeller(Long sellerId, String name, String password) {
+    @Transactional
+    public void updateSeller(Long sellerId, String nickName, String password) {
+        Optional<Seller> sellerOptional = sellerRepository.findById(sellerId);
+        if (!sellerOptional.isPresent()){
+            throw new EntityNotFoundException("Seller, id: " + sellerId);
+        }
+        Seller seller = sellerOptional.get();
+        seller.setNickName(nickName);
+        seller.setPassword(password);
 
+        sellerRepository.save(seller);
     }
 }
