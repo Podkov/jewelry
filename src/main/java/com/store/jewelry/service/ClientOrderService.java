@@ -11,13 +11,13 @@ import java.util.Optional;
 
 public interface ClientOrderService {
 
-    Long createClientOrder(LocalDate dateOfOrder, String orderStatus, float price, List<Client> clientList, Cart cart);
+    Long createClientOrder(LocalDate dateOfOrder, String orderStatus, float price, Long clientId);
 
     List<ClientOrder> getAllClientOrders();
 
     void deleteClientOrder(Long clientOrderId);
 
-    void updateClientOrder(Long clientOrderId, LocalDate dateOfOrder, String orderStatus, float price, List<Client> clientList, Cart cart);
+    void updateClientOrder(Long clientOrderId, LocalDate dateOfOrder, String orderStatus, float price, Long clientId);
 
     Optional<ClientOrder> getClientOrder(Long clientOrderId);
 }
