@@ -3,7 +3,10 @@ package com.store.jewelry.service;
 import com.store.jewelry.model.Cart;
 import com.store.jewelry.model.Client;
 import com.store.jewelry.model.ClientOrder;
+import com.store.jewelry.repository.CartRepository;
 import com.store.jewelry.repository.ClientOrderRepository;
+import com.store.jewelry.repository.ClientRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,20 +22,36 @@ public class ClientOrderServiceImpl implements ClientOrderService {
 
     private ClientOrderRepository clientOrderRepository;
 
+    @Autowired
+    private ClientRepository clientRepository;
+
+    @Autowired
+    private CartRepository cartRepository;
+
     public ClientOrderServiceImpl(ClientOrderRepository clientOrderRepository) {
         this.clientOrderRepository = clientOrderRepository;
     }
 
     @Override
     @Transactional
-    public Long createClientOrder(LocalDate dateOfOrder, String orderStatus, float price, List<Client> clientList, Cart cart) {
+    public Long createClientOrder(LocalDate dateOfOrder, String orderStatus, float price, Long clientId) {
 
         ClientOrder clientOrder = new ClientOrder();
-        clientOrder.setDateOfOrder(dateOfOrder);
+        clientOrder.setDateOfOrder(LocalDate.now());
         clientOrder.setOrderStatus(orderStatus);
         clientOrder.setPrice(price);
-        clientOrder.setClients(clientList);
-        clientOrder.setCart(cart);
+        clientOrder.setClientId(clientId);
+        Client client = clientRepository.findById(clientId).get();
+        clientOrder.setClient(client);
+        clientOrder.setCart(client.getCart());
+        //Optional<Client> clientOptional = clientRepository.findById(clientId);
+//        if (clientRepository.findById(clientId).isPresent()) {
+//            clientOrder.setClient(clientRepository.findById(clientId).get());
+//            if (clientRepository.findById(clientId).get().getCart()!=null) {
+//                clientOrder.setCart(clientRepository.findById(clientId).get().getCart());
+//            }
+//        }
+
 
         clientOrderRepository.save(clientOrder);
 
@@ -57,18 +76,23 @@ public class ClientOrderServiceImpl implements ClientOrderService {
 
     @Override
     @Transactional
-    public void updateClientOrder(Long clientOrderId, LocalDate dateOfOrder, String orderStatus, float price, List<Client> clientList, Cart cart) {
+    public void updateClientOrder(Long clientOrderId, LocalDate dateOfOrder, String orderStatus, float price, Long clientId) {
         Optional<ClientOrder> clientOrderOptional = clientOrderRepository.findById(clientOrderId);
         if (!clientOrderOptional.isPresent()){
             throw new EntityNotFoundException("ClientOrder, id: " + clientOrderId);
         }
 
         ClientOrder clientOrder = clientOrderOptional.get();
-        clientOrder.setDateOfOrder(dateOfOrder);
         clientOrder.setOrderStatus(orderStatus);
         clientOrder.setPrice(price);
-        clientOrder.setClients(clientList);
-        clientOrder.setCart(cart);
+        clientOrder.setClientId(clientId);
+        Optional<Client> clientOptional = clientRepository.findById(clientId);
+        if (clientOptional.isPresent()) {
+            clientOrder.setClient(clientOptional.get());
+            if (clientOptional.get().getCart()!=null) {
+                clientOrder.setCart(clientOptional.get().getCart());
+            }
+        }
 
         clientOrderRepository.save(clientOrder);
     }

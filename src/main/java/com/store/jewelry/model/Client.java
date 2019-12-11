@@ -22,7 +22,7 @@ public class Client {
     @Column
     private String password;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     @JoinTable(
             name = "client_order_join",
             joinColumns = @JoinColumn(name = "client_id"),
@@ -37,6 +37,10 @@ public class Client {
             inverseJoinColumns = @JoinColumn(name = "address_id")
     )
     private List<Address> addresses;
+
+    @OneToOne
+    @JoinColumn(name = "cart_id")
+    private Cart cart;
 
     public String getFirstName() {
         return firstName;
@@ -92,5 +96,13 @@ public class Client {
 
     public void setAddresses(List<Address> addresses) {
         this.addresses = addresses;
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 }
