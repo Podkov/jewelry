@@ -13,39 +13,39 @@
 
 
     <meta charset="UTF-8">
-    <title>Dodaj pracownika</title>
+    <title>Dodaj adres klienta</title>
 </head>
 <body>
 <div class="container-sm">
 
     <h3>Wpisz dane</h3>
     <hr>
-    <p class="h4 mb-4">Klient</p>
-    <form action="#" th:action="@{/admin/client/save}"
-          th:object="${client}" method="POST">
+    <p class="h4 mb-4">Adres</p>
+    <form action="#" th:action="@{/admin/client/address/save(clientId = ${clientId})}"
+          th:object="${address}" method="POST">
 
         <!-- Add hidden form field to update -->
         <input type="hidden" th:field="*{id}"/>
 
-        <input type="text" th:field="*{firstName}" placeholder="Imie"
+        <input type="text" th:field="*{zipCode}" placeholder="Kod pocztowy"
                class="form-control mb-4 col-4">
 
-        <input type="text" th:field="*{lastName}" placeholder="Nazwisko"
+        <input type="text" th:field="*{street}" placeholder="Ulica"
                class="form-control mb-4 col-4">
 
-        <input type="text" th:field="*{nickName}" placeholder="Nazwa użytkownika"
+        <input type="text" th:field="*{houseNumber}" placeholder="Numer domu"
                class="form-control mb-4 col-4">
 
-        <input type="text" th:field="*{password}" placeholder="Hasło"
+        <input type="text" th:field="*{apartmentNumber}" placeholder="Numer mieszkania"
                class="form-control mb-4 col-4">
 
         <button type="submit" class="btn btn-info col-2">Save</button>
 
     </form>
     <hr>
-    <a th:href="@{/admin/client/list}"> Wróć do listy </a>
+    <a th:href="@{/admin/address/list}"> Wróć do listy </a>
 
-    </div>
+</div>
 
 </body>
 </html>

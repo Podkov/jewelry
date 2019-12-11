@@ -3,6 +3,7 @@ package com.store.jewelry.service;
 import com.store.jewelry.model.Address;
 import com.store.jewelry.model.Client;
 import com.store.jewelry.repository.AddressRepository;
+import com.store.jewelry.repository.ClientRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,6 +17,7 @@ import java.util.Optional;
 public class AddressServiceImpl implements AddressService {
 
     private AddressRepository addressRepository;
+    private ClientRepository clientRepository;
 
     public AddressServiceImpl(AddressRepository addressRepository) {
         this.addressRepository = addressRepository;
@@ -49,6 +51,22 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
+    public List<Address> getAllAddresses(Long clientId) {
+
+        List<Address> addresses = new ArrayList<>();
+
+        for (Address address : addressRepository.findAll()){
+            for (Client client1: address.getClients()){
+                if (client1.getId() == clientId){
+                    addresses.add(address);
+                }
+            }
+        }
+
+        return addresses;
+    }
+
+    @Override
     @Transactional
     public void deleteAddress(Long addressId) {
         addressRepository.deleteById(addressId);
@@ -76,4 +94,6 @@ public class AddressServiceImpl implements AddressService {
     public Optional<Address> getAddress(Long addressId) {
         return addressRepository.findById(addressId);
     }
+
+
 }

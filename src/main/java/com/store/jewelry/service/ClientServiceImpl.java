@@ -64,7 +64,7 @@ public class ClientServiceImpl implements ClientService{
         }
 
         Client client = clientOptional.get();
-        client.setFirstName(nickName);
+        client.setFirstName(firstName);
         client.setLastName(lastName);
         client.setNickName(nickName);
         client.setPassword(password);
@@ -84,7 +84,7 @@ public class ClientServiceImpl implements ClientService{
         }
 
         Client client = clientOptional.get();
-        client.setFirstName(nickName);
+        client.setFirstName(firstName);
         client.setLastName(lastName);
         client.setNickName(nickName);
         client.setPassword(password);

@@ -18,4 +18,7 @@ public interface AddressService {
 
     Optional<Address> getAddress(Long addressId);
 
+    List<Address> getAllAddresses(Long clientId);
+
+
 }

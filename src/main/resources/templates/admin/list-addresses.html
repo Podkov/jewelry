@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="pl">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <meta charset="UTF-8">
+    <title>lista adresów</title>
+</head>
+<body>
+<div class="container">
+    <h3>LISTA ADRESÓW</h3>
+    <hr>
+
+    <a th:href="@{/admin/client/address/addForm(clientId = ${client.getId()})}"
+       class="btn btn-primary btn-sm mb-3">
+        Dodaj Adres
+    </a>
+
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Kod pocztowy</th>
+            <th>Ulica</th>
+            <th>Numer domu</th>
+            <th>Numer mieszkania</th>
+            <th>Akcje</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="tempAddress : ${addresses}">
+
+            <td th:text="${tempAddress.zipCode}"/>
+            <td th:text="${tempAddress.street}"/>
+            <td th:text="${tempAddress.houseNumber}"/>
+            <td th:text="${tempAddress.apartmentNumber}"/>
+
+            <td>
+                <a th:href="@{/admin/client/address/showUpdateForm(addressId = ${tempAddress.getId()})}"
+                   class="btn btn-info btn-sm">
+                    Aktualizuj
+                </a>
+
+                <a th:href="@{/admin/client/address/delete(addressId = ${tempAddress.getId()})}"
+                   class="btn btn-danger btn-sm"
+                   onclick="if (!(confirm('Czy na pewno usnąć?'))) return false">
+                    Usuń
+                </a>
+
+            </td>
+
+        </tr>
+
+        </tbody>
+
+    </table>
+
+    <hr>
+    <a th:href="@{/admin/menu}"> Wróć do menu </a>
+
+</div>
+</body>
+</html>

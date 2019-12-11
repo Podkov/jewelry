@@ -132,4 +132,85 @@ public class AdminController {
         return "redirect:/admin/client/list";
     }
 
+    @Autowired
+    private AddressService addressService;
+
+    @RequestMapping(value = "/client/address/list")
+    public String showAddressList(@RequestParam("clientId") long clientId, Model model) {
+        Client client = null;
+
+        Optional<Client> clientOptional = clientService.getClient(clientId);
+        if (clientOptional.isPresent()) {
+            client = clientOptional.get();
+        }
+
+        List<Address> addresses = addressService.getAllAddresses(clientId);
+
+        model.addAttribute("addresses", addresses);
+        model.addAttribute("client", client);
+
+        return "admin/list-addresses";
+
+    }
+
+    @RequestMapping(value = "/client/address/addForm")
+    public String showAddressForm(@RequestParam("clientId") Long clientId, @ModelAttribute("client") Client client, Model model) {
+
+        Address address = new Address();
+        model.addAttribute("address", address);
+        model.addAttribute("clientId", clientId);
+
+        return "admin/add-address-form";
+
+    }
+
+    @RequestMapping(value = "/client/address/save")
+    public String saveAddress(@RequestParam("clientId") Long clientId, @ModelAttribute("address") Address address) {
+
+        List<Address> addressList = clientService.getClient(clientId).get().getAddresses();
+        addressList.add(address);
+
+        clientService.getClient(clientId).get().setAddresses(addressList);
+
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("redirect:/admin/client/address/list?clientId=");
+        stringBuilder.append(clientId);
+
+        return stringBuilder.toString();
+
+    }
+
+    @RequestMapping(value = "/client/address/delete")
+    public String deleteAddress(@RequestParam("addressId") Long addressId) {
+
+        addressService.deleteAddress(addressId);
+
+        return "redirect:/admin/client/list";
+
+    }
+
+    @RequestMapping(value = "/client/address/showUpdateForm")
+    public String showAddressUpdateForm(@ModelAttribute("addressId") Long addressId, Model model) {
+
+        Address address1 = new Address();
+        model.addAttribute("address", address1);
+
+        Optional<Address> address2 = addressService.getAddress(addressId);
+        if (address2.isPresent()) {
+            Address address3 = address2.get();
+            model.addAttribute("address", address3);
+        }
+
+        return "admin/update-address-form";
+
+    }
+
+    @RequestMapping(value = "/client/address/update")
+    public String updateSeller(@ModelAttribute("address") Address address) {
+        addressService.updateAddress(address.getId(), address.getZipCode(), address.getStreet(), address.getHouseNumber(), address.getApartmentNumber(), address.getClients());
+        return "redirect:/admin/client/list";
+
+    }
+
+
 }
