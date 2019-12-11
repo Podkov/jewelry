@@ -18,6 +18,8 @@ public interface ClientService {
 
     void updateClient(Long clientId, String firstName, String lastName, String nickName, String password, List<Address> addressList, List<ClientOrder> clientOrderList);
 
+    void updateClient(Long clientId, String firstName, String lastName, String nickName, String password);
+
     Optional<Client> getClient(Long clientId);
 
 }

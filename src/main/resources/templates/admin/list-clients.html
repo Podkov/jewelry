@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="pl">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <meta charset="UTF-8">
+    <title>edycja klienta</title>
+</head>
+<body>
+<div class="container">
+    <h3>EDYCJA KLIENTA</h3>
+    <hr>
+
+    <a th:href="@{/admin/client/addForm}"
+       class="btn btn-primary btn-sm mb-3">
+        Dodaj klienta
+    </a>
+
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Imie</th>
+            <th>Nazwisko</th>
+            <th>Nick</th>
+            <th>Hasło</th>
+            <th>Akcje</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="tempClient : ${clients}">
+
+            <td th:text="${tempClient.firstName}"/>
+            <td th:text="${tempClient.lastName}"/>
+            <td th:text="${tempClient.nickName}"/>
+            <td th:text="${tempClient.password}"/>
+
+            <td>
+                <a th:href="@{/admin/client/showUpdateForm(clientId = ${tempClient.getId()})}"
+                   class="btn btn-info btn-sm">
+                    Aktualizuj
+                </a>
+
+                <a th:href="@{/admin/client/delete(clientId = ${tempClient.getId()})}"
+                   class="btn btn-danger btn-sm"
+                   onclick="if (!(confirm('Czy na pewno usnąć?'))) return false">
+                    Usuń
+                </a>
+
+                <a th:href="@{/admin/client/address/list(clientId = ${tempClient.getId()})}"
+                   class="btn btn-danger btn-sm">
+                    Adres
+                </a>
+
+            </td>
+
+        </tr>
+
+        </tbody>
+
+    </table>
+
+    <hr>
+    <a th:href="@{/admin/menu}"> Wróć do menu </a>
+
+</div>
+</body>
+</html>

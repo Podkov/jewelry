@@ -21,24 +21,31 @@
     <h3>Wpisz dane</h3>
     <hr>
     <p class="h4 mb-4">Save</p>
-    <form action="#" th:action="@{/seller/save}"
-          th:object="${seller}" method="POST">
+    <form action="#" th:action="@{/admin/client/save}"
+          th:object="${client}" method="POST">
 
         <!-- Add hidden form field to update -->
         <input type="hidden" th:field="*{id}"/>
 
-        <input type="text" th:field="*{nickName}" placeholder="Nick"
+        <input type="text" th:field="*{firstName}" placeholder="Imie"
                class="form-control mb-4 col-4">
 
-        <input type="text" th:field="*{password}" placeholder="Password"
+        <input type="text" th:field="*{lastName}" placeholder="Nazwisko"
+               class="form-control mb-4 col-4">
+
+        <input type="text" th:field="*{nickName}" placeholder="Nazwa użytkownika"
+               class="form-control mb-4 col-4">
+
+        <input type="text" th:field="*{password}" placeholder="Hasło"
                class="form-control mb-4 col-4">
 
         <button type="submit" class="btn btn-info col-2">Save</button>
 
     </form>
     <hr>
-    <a th:href="@{/seller/list}"> Wróć do listy </a>
+    <a th:href="@{/admin/client/list}"> Wróć do listy </a>
 
     </div>
+
 </body>
 </html>

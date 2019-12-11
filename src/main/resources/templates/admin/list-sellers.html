@@ -11,24 +11,24 @@
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <meta charset="UTF-8">
-    <title>seller list</title>
+    <title>edycja sprzedawcy</title>
 </head>
 <body>
 <div class="container">
-    <h3>Seller table</h3>
+    <h3>EDYCJA SPRZEDAWCY</h3>
     <hr>
 
-    <a th:href="@{/seller/addSellerForm}"
+    <a th:href="@{/admin/seller/addForm}"
        class="btn btn-primary btn-sm mb-3">
-        Add seller
+        Dodaj sprzedawce
     </a>
 
     <table class="table table-bordered table-striped">
         <thead class="thead-dark">
         <tr>
-            <th>Name</th>
-            <th>Password</th>
-            <th>Action</th>
+            <th>Nick</th>
+            <th>Hasło</th>
+            <th>Akcje</th>
         </tr>
         </thead>
         <tbody>
@@ -38,25 +38,28 @@
             <td th:text="${tempSeller.password}"/>
 
             <td>
-                <a th:href="@{/seller/showUpdateForm(sellerId = ${tempSeller.getId()})}"
+                <a th:href="@{/admin/seller/showUpdateForm(sellerId = ${tempSeller.getId()})}"
                    class="btn btn-info btn-sm">
-                    Update
+                    Aktualizuj
                 </a>
 
-                <a th:href="@{/seller/delete(sellerId= ${tempSeller.getId()})}"
+                <a th:href="@{/admin/seller/delete(sellerId = ${tempSeller.getId()})}"
                    class="btn btn-danger btn-sm"
                    onclick="if (!(confirm('Czy na pewno usnąć?'))) return false">
-                    Delete
+                    Usuń
                 </a>
 
             </td>
 
-
         </tr>
+
         </tbody>
 
-
     </table>
+
+    <hr>
+    <a th:href="@{/admin/menu}"> Wróć do menu </a>
+
 </div>
 </body>
 </html>

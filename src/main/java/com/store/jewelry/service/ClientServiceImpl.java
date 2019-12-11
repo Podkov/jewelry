@@ -75,6 +75,24 @@ public class ClientServiceImpl implements ClientService{
     }
 
     @Override
+    @Transactional
+    public void updateClient(Long clientId, String firstName, String lastName, String nickName, String password) {
+        Optional<Client> clientOptional = clientRepository.findById(clientId);
+
+        if (!clientOptional.isPresent()){
+            throw new EntityNotFoundException("Client, id: " + clientId);
+        }
+
+        Client client = clientOptional.get();
+        client.setFirstName(nickName);
+        client.setLastName(lastName);
+        client.setNickName(nickName);
+        client.setPassword(password);
+
+        clientRepository.save(client);
+    }
+
+    @Override
     public Optional<Client> getClient(Long clientId) {
         return clientRepository.findById(clientId);
     }
