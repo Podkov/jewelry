@@ -8,13 +8,13 @@ import java.util.Optional;
 
 public interface AddressService {
 
-    Long createAddress(int zipCode, String street, String houseNumber, String apartmentNumber, List<Client> clientList);
+    Long createAddress(String zipCode, String street, String houseNumber, String apartmentNumber, List<Client> clientList);
 
     List<Address> getAllAddresses();
 
     void deleteAddress(Long addressId);
 
-    void updateAddress(Long addressId, int zipCode, String street, String houseNumber, String apartmentNumber, List<Client> clientList);
+    void updateAddress(Long addressId, String zipCode, String street, String houseNumber, String apartmentNumber, List<Client> clientList);
 
     Optional<Address> getAddress(Long addressId);
 

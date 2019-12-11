@@ -25,7 +25,7 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     @Transactional
-    public Long createAddress(int zipCode, String street, String houseNumber, String apartmentNumber, List<Client> clientList) {
+    public Long createAddress(String zipCode, String street, String houseNumber, String apartmentNumber, List<Client> clientList) {
 
         Address address = new Address();
         address.setZipCode(zipCode);
@@ -74,7 +74,7 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     @Transactional
-    public void updateAddress(Long addressId, int zipCode, String street, String houseNumber, String apartmentNumber, List<Client> clientList) {
+    public void updateAddress(Long addressId, String zipCode, String street, String houseNumber, String apartmentNumber, List<Client> clientList) {
         Optional<Address> addressOptional = addressRepository.findById(addressId);
         if (!addressOptional.isPresent()) {
             throw new EntityNotFoundException("Address, id: " + addressId);

@@ -11,7 +11,7 @@ public class Address {
     private long id;
 
     @Column
-    private int zipCode;
+    private String zipCode;
 
     @Column
     private String street;
@@ -30,11 +30,11 @@ public class Address {
     )
     private List<Client> clients;
 
-    public int getZipCode() {
+    public String getZipCode() {
         return zipCode;
     }
 
-    public void setZipCode(int zipCode) {
+    public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
 
