@@ -18,8 +18,6 @@ public class ClientController {
     private ClientService clientService;
 
 
-
-
     @RequestMapping("/list")
     public String listCustomers(Model model){
 
