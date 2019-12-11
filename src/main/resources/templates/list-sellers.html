@@ -42,7 +42,15 @@
                    class="btn btn-info btn-sm">
                     Update
                 </a>
+
+                <a th:href="@{/seller/delete(sellerId= ${tempSeller.getId()})}"
+                   class="btn btn-danger btn-sm"
+                   onclick="if (!(confirm('Czy na pewno usnąć?'))) return false">
+                    Delete
+                </a>
+
             </td>
+
 
         </tr>
         </tbody>

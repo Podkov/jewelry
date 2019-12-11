@@ -1,16 +1,11 @@
 package com.store.jewelry.controller;
 
-import ch.qos.logback.core.boolex.EvaluationException;
 import com.store.jewelry.model.Seller;
 import com.store.jewelry.service.SellerService;
-import org.jcp.xml.dsig.internal.dom.ApacheOctetStreamData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -34,17 +29,26 @@ public class SellerController {
     @RequestMapping(value = "/showUpdateForm", method = RequestMethod.GET)
     public String showUpdateForm(@RequestParam("sellerId") Long sellerId, Model model) {
 
-        Optional<Seller> seller = sellerService.getSeller(sellerId);
-        if (seller.isPresent()) {
-            Seller seller1 = seller.get();
+        Seller seller = new Seller();
+        model.addAttribute("seller", seller);
+
+        Optional<Seller> seller2 = sellerService.getSeller(sellerId);
+        if (seller2.isPresent()) {
+            Seller seller1 = seller2.get();
             model.addAttribute("seller", seller1);
         }
-        return "add-seller-form";
+        return "update-seller-form";
     }
 
     @RequestMapping(value = "/save")
     public String saveSeller(@ModelAttribute("seller") Seller seller) {
         sellerService.createSeller(seller.getNickName(), seller.getPassword());
+        return "redirect:/seller/list";
+    }
+
+    @RequestMapping(value = "/update")
+    public String updateSeller(@ModelAttribute("seller") Seller seller){
+        sellerService.updateSeller(seller.getId(), seller.getNickName(), seller.getPassword());
         return "redirect:/seller/list";
     }
 
@@ -56,5 +60,12 @@ public class SellerController {
 
         return "list-sellers";
     }
+
+    @RequestMapping(value = "/delete")
+    public String delete(@RequestParam("sellerId") Long sellerId){
+        sellerService.deleteSeller(sellerId);
+        return "redirect:/seller/list";
+    }
+
 
 }
