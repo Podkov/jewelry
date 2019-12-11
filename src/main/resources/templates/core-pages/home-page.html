@@ -30,34 +30,19 @@
 
 
     <meta charset="UTF-8">
-    <title>Edytuj zamowienie</title>
+    <title>Home Page</title>
 </head>
 <body>
 <div class="container-sm">
 
-    <h3>Wpisz dane</h3>
+    <h3>Jewelry Shop Home Page - psst don't look at the page quality we are still working on it</h3>
     <hr>
-    <p class="h4 mb-4">Save</p>
-    <form action="#" th:action="@{/sellerPanel/update}"
-          th:object="${clientOrder}" method="POST">
+    <p class="h4 mb-4">Choose your way... :</p>
 
-        <!-- Add hidden form field to update -->
-        <input type="hidden" th:field="*{id}"/>
-
-        <input type="text" th:field="*{orderStatus}" placeholder="Order status"
-               class="form-control mb-4 col-4">
-
-        <input type="text" th:field="*{price}" placeholder="Total Price"
-               class="form-control mb-4 col-4">
-
-        <input type="text" th:field="*{clientId}" placeholder="Client ID"
-               class="form-control mb-4 col-4">
-
-        <button type="submit" class="btn btn-info col-2">Save</button>
-
-    </form>
     <hr>
-    <a th:href="@{/sellerPanel/list}"> Wróć do listy </a>
+    <a th:href="@{/sellerPanel/list}"> Przejdz do panelu zamowien </a>
+    <hr>
+    <a th:href="@{/admin/menu}"> Przejdź do panelu admina </a>
 
 </div>
 </body>
